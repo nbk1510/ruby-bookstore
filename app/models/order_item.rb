@@ -20,6 +20,14 @@ class OrderItem < ApplicationRecord
     unit_price * quantity
   end
 
+  def find_product(pid)
+    if self.product.exist(pid)
+      product.id
+    else
+      errors.add(:product, "can not find such product")
+    end
+  end
+
 private
   def product_present
     if product.nil?

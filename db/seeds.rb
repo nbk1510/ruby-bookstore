@@ -19,3 +19,4 @@ Tagging.create(category: Category.first, product: Product.second)
 Tagging.create(category: Category.first, product: Product.third)
 Tagging.create(category: Category.second, product: Product.fourth)
 Tagging.create(category: Category.second, product: Product.fifth)
+AdminUser.create!(email: 'admin@khanh.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-    if !session[:order_id].nil?
-      Order.find(session[:order_id])
-    else
-      Order.new
-    end
+
+    @cart = session[:cart]
+    @cart ||= {}
+    session[:cart] = @cart
   end
+
 end
