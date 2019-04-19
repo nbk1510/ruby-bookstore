@@ -1,0 +1,96 @@
+
+
+<h1 class="text-center">Book: <%= @product.name %></h1>
+
+<h2>Author: <%=@product.author %></h2>
+<h2>Description: </h2>
+<p><%= @product.description %></p>
+<div id="productRating"></div> ( Rated <%=@product.times_rated %> times)
+
+<%= form_for @order_item, remote: true do |f| %>
+  <h4 class="text-left">Unit Price: <span style="color: green"><%= number_to_currency @product.price %></span></h4>
+  <a>Add to cart:</a>
+  <div class="input-group" style="width: 300px">
+    <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
+    <div class="input-group-btn">
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+<% if user_signed_in? %>
+    <%= form_for (@comment), remote: true do |ff| %>
+      <div style="border: black; border-width: 2px">
+        Your review and rating:<br/>
+        <div id="rater"></div><br/>
+        <%= ff.text_area('text', size: "5x5", required: true) %><br/>
+        <%= ff.hidden_field :product_id, value: @product.id %>
+        <%= ff.hidden_field :user_id, value: current_user.id %>
+        <%#= ff.hidden_field 'myrating', value: 0 %>
+        <input type="hidden" id="comment_rating" name="comment[rating]"/>
+        <%#= ff.submit 'Submit review', class: "btn btn-primary"%>
+        <input type="submit" id="btnSubmit" value="Submit review">
+      </div>
+    <% end %>
+
+<% else %>
+  <a>Login to leave a comment and rate!</a>
+<% end %>
+<!--  Comment section-->
+<div style="border-width: 2px; border: black; width: 600px">
+  <% if !@comments.where(product_id: @product.id).empty? %>
+    <h2>People's review on this product:</h2><hr/>
+    <% @comments.where(product_id: @product.id).each do |comment| %>
+      <div style="border: black; border-width: 3px; margin-left: 20px">
+        <h3><%=comment.user.email %> said:</h3>
+        <p><%=comment.text %></p>
+        <hr/>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+    // alert("lolol");
+    console.log("hello")
+    //product's ratign
+    var pRating = raterJs( {
+        element:document.querySelector("#productRating"),
+        rateCallback:function rateCallback(rating, done) {
+            pRating.setRating(rating);
+            done();
+        },
+        showToolTip: false,
+        readOnly: true
+    });
+    pRating.setRating(<%=@product.rating %>)
+    //user's rating
+    var myRating = raterJs( {
+        element:document.querySelector("#rater"),
+        rateCallback:function rateCallback(rating, done) {
+            myRating.setRating(rating);
+            document.getElementById('comment_rating').value = rating;
+            done();
+        },
+        showToolTip: false
+        <% if user_signed_in? %>
+        <% if !@comments.where(product_id: @product.id, user_id: current_user.id).first.nil? %>
+        ,readOnly: true
+        <% end %>
+        <% end %>
+    });
+
+    //disable comments if user commented
+    <% if user_signed_in? %>
+    console.log("user signed in ")
+    <% if !@comments.where(product_id: @product.id, user_id: current_user.id).first.nil? %>
+
+    //user has commented on this product, set value and disable the form
+    <% cc = @comments.where(product_id: @product.id, user_id: current_user.id).first %>
+    myRating.setRating(<%= cc.rating %>)
+    document.getElementById('comment_text').value = '<%= cc.text %>';
+    document.getElementById('comment_text').disabled = true;
+    document.getElementById('btnSubmit').style.visibility = 'hidden';
+    <% end %>
+    <% end %>
+</script>

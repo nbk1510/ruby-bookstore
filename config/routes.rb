@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   devise_for :orders, ActiveAdmin::Devise.config
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -13,7 +14,8 @@ Rails.application.routes.draw do
   # delete '/empty',  to: 'sessions#destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  resources :users
+  resource :comments
   resources :products
   resource :cart
   resources :order_items, only: [:create, :update, :destroy]

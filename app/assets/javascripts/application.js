@@ -12,6 +12,8 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+
 //= require jquery
 //= require jquery_ujs
+//= require rater-js-master
+//= require_tree .

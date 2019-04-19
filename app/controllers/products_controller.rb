@@ -12,7 +12,16 @@ class ProductsController < ApplicationController
   def show
     @category = Category.all
     @product = Product.find(params[:id])
+    @order_item = OrderItem.new
+    @comments = Comment.all
+    @comment = Comment.new
+    # debugger
   end
 
-  
+  def rate
+    product = Product.find(params[:id])
+    product.rate(params[:rating])
+    debugger
+    product.save
+  end
 end
