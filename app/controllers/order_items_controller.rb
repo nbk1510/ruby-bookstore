@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def create
     puts "add to cart, finding product with id "
     item = order_item_params

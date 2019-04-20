@@ -63,7 +63,7 @@
         showToolTip: false,
         readOnly: true
     });
-    pRating.setRating(<%=@product.rating %>)
+    pRating.setRating(<%= @product.rating %>)
     //user's rating
     var myRating = raterJs( {
         element:document.querySelector("#rater"),
