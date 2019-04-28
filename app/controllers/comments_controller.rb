@@ -2,7 +2,9 @@ class CommentsController < ApplicationController
   helper_method :get_comment
 
   def create
+    # debugger
     if Comment.new(comment_params)
+      puts "got new params"
       com = Comment.new(comment_params)
       com.save
       p = Product.find(comment_params[:product_id])

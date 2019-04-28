@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 # Use ActiveAdmin
 gem 'activeadmin'
+gem 'factory_bot_rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -43,6 +44,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do

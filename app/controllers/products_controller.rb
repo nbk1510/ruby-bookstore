@@ -17,11 +17,10 @@ class ProductsController < ApplicationController
     @comment = Comment.new
     # debugger
   end
-
-  def rate
-    product = Product.find(params[:id])
-    product.rate(params[:rating])
-    debugger
-    product.save
-  end
+  #
+  # def rate
+  #   product = Product.find(params[:id])
+  #   product.rate(params[:rating])
+  #   product.save
+  # end
 end

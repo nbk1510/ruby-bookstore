@@ -5,7 +5,7 @@
 <h2>Author: <%=@product.author %></h2>
 <h2>Description: </h2>
 <p><%= @product.description %></p>
-<div id="productRating"></div> ( Rated <%=@product.times_rated %> times)
+<div id="productRating" data-rating="<%= @product.rating %>"></div> ( Rated <%=@product.times_rated %> times)
 
 <%= form_for @order_item, remote: true do |f| %>
   <h4 class="text-left">Unit Price: <span style="color: green"><%= number_to_currency @product.price %></span></h4>
@@ -63,7 +63,10 @@
         showToolTip: false,
         readOnly: true
     });
-    pRating.setRating(<%= @product.rating %>)
+    if ($('.user-status').hasClass('signed-in')) {
+
+    }
+    pRating.setRating($('productRating').data('rating'));
     //user's rating
     var myRating = raterJs( {
         element:document.querySelector("#rater"),
