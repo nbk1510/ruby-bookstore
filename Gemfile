@@ -34,6 +34,8 @@ gem 'devise'
 # Use ActiveAdmin
 gem 'activeadmin'
 gem 'factory_bot_rails'
+gem 'jwt'
+gem 'rack-cors'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
