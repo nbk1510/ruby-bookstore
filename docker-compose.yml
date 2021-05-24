@@ -1,0 +1,45 @@
+version: '3'
+services:
+  web:
+    container_name: bookstore1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh docker/start.sh
+    entrypoint: []
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    # env_file: api.env
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=bookstore2_development
+      - DB_USER=khanh
+      - DB_PASS=password
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bookstore2_development
+      MYSQL_USER: khanh
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - bookstore_db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # cache:
+  #   image: redis:5.0-alpine
+  #   ports:
+  #     - "6379:6379"
+
+  
+
+volumes:
+  bookstore_db:

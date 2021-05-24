@@ -11,11 +11,5 @@
         <% end %>
       </ul>
     <% end %>
-
-  <% if false %>
-    <% @products.order(:id).limit(10).each do |product| %>
-      <%= render "product_row", product: product, order_item: @order_item %>
-    <% end %>
-  <%end%>
   </div>
 </div>

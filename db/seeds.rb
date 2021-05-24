@@ -8,7 +8,7 @@
 Category.create(name: "Textbook")
 Category.create(name: "Comic")
 
-Product.create(name: "sachgiaokhoa", price: 20, author: "khanh")
+Product.create(name: "sach vat ly", price: 20, author: "khanh")
 Product.create(name: "sach tieng anh", price: 20, author: "khanh")
 Product.create(name: "sach toan", price: 20, author: "khanh")
 Product.create(name: "batman", price: 20, author: "khanh")
