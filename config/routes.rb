@@ -20,4 +20,9 @@ Rails.application.routes.draw do
   resource :cart
   resources :order_items, only: [:create, :update, :destroy]
   root to: "products#index"
+  scope 'api' do
+    get 'products', to: 'v1/api#products', as: :product_list
+    get 'categories', to: 'v1/api#categories', as: :category_list
+  end
+  
 end
