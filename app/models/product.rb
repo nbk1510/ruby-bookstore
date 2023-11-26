@@ -12,6 +12,7 @@ class Product < ApplicationRecord
     end
 
     private
+
     def set_rating
         self[:rating] = self[:total_rating] / self[:times_rated]
     end

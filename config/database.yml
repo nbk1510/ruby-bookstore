@@ -9,9 +9,9 @@ development:
   <<: *default
   database: bookstore2_development
 
-# test:
-#   <<: *default
-#   database: bookstore2_test
+test:
+  <<: *default
+  database: bookstore2_test
 
 # production:
 #   <<: *default
