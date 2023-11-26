@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql
+        image: mysql2
         ports:
           - "8080:8080"
         env:
@@ -24,7 +24,7 @@ jobs:
           MYSQL_PASSWORD: password
     env:
       RAILS_ENV: test
-      DATABASE_URL: "mysql://root:password@localhost:5432/bookstore2_test"
+      DATABASE_URL: "mysql2://root:password@localhost:5432/bookstore2_test"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
