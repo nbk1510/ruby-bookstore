@@ -1,10 +1,11 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
-  collation: utf8mb4_unicode_ci
+  adapter: postgresql
+  encoding: unicode
+  # collation: utf8mb4_unicode_ci
   host: <%= ENV['DB_HOST'] %>
-  username: <%= ENV['DB_USER'] %>
-  password: <%= ENV['DB_PASS'] %>
+  username: khanh
+  password: password
+  # password: 1510
 development:
   <<: *default
   database: bookstore2_development
