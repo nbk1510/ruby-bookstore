@@ -28,11 +28,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      # Add or replace dependency steps here
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+      - name: Setup Ruby, JRuby and TruffleRuby
+        uses: ruby/setup-ruby@v1.161.0
         with:
-          bundler-cache: true
+            bundler-cache: true
+        # Add or replace dependency steps here
+      # - name: Install Ruby and gems
+      #   uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
