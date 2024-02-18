@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  # devise_for :users
   devise_for :orders, ActiveAdmin::Devise.config
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post 'order/create'
 
@@ -24,5 +24,5 @@ Rails.application.routes.draw do
     get 'products', to: 'v1/api#products', as: :product_list
     get 'categories', to: 'v1/api#categories', as: :category_list
   end
-  
+
 end

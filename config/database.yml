@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   # collation: utf8mb4_unicode_ci
   host: <%= ENV['DB_HOST'] %>
-  username: khanh
+  username: postgres
   password: password
   # password: 1510
 development:
